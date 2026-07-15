@@ -1,6 +1,8 @@
 package tests;
 
 import io.restassured.http.ContentType;
+import models.lombok.RegistrationBodyLombokModel;
+import models.lombok.RegistrationResponseLombokModel;
 import models.pojo.RegistrationBodyPojoModel;
 import models.pojo.RegistrationResponsePojoModel;
 import net.datafaker.Faker;
@@ -44,6 +46,32 @@ public class RegistrationTests extends TestBase {
                 .body("username", is(username))
                 .body("id", notNullValue());
     }
+
+    @Test
+    public void succesfulRegistrationTest_with_lombok() {
+
+        RegistrationBodyLombokModel data = new RegistrationBodyLombokModel();
+        data.setUsername(username);
+        data.setPassword(password);
+
+//        With constructor
+//        RegistrationBodyPojoModel data = new RegistrationBodyPojoModel();
+
+        RegistrationResponseLombokModel registrationResponse = given()
+                .log().all()
+                .contentType(JSON)
+                .body(data)
+                .when()
+                .post("api/v1/users/register/")
+                .then()
+                .log().all()
+                .statusCode(201)
+                .extract()
+                .as(RegistrationResponseLombokModel.class);
+
+        assertEquals(username, registrationResponse.getUsername());
+    }
+
 
     @Test
     public void succesfulRegistrationTest_with_pojo() {

@@ -4,14 +4,6 @@ import static java.lang.String.format;
 
 public class RegistrationResponsePojoModel {
 
-//    {
-//        "id": 3442,
-//            "username": "Lakisha",
-//            "firstName": "",
-//            "lastName": "",
-//            "email": "",
-//            "remoteAddr": "155.117.99.103"
-//    }
     Integer id;
     String username;
     String firstName;
