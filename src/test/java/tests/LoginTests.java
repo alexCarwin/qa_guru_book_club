@@ -41,7 +41,7 @@ public class LoginTests extends TestBase {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .body(matchesJsonSchemaInClasspath("schemas/successful_login_response_schema.json"))
+                .body(matchesJsonSchemaInClasspath("schemas/login/successful_login_response_schema.json"))
                 .body("access", notNullValue())
                 .body("refresh", notNullValue())
                 .extract().as(SuccessfulLoginResponseModel.class);
@@ -71,7 +71,7 @@ public class LoginTests extends TestBase {
                 .log().all()
                 .statusCode(401)
                 .body(matchesJsonSchemaInClasspath(
-                        "schemas/wrong_credentials_login_response_schema.json"))
+                        "schemas/login/wrong_credentials_login_response_schema.json"))
                 .body("detail", notNullValue())
                 .extract().as(WrongCredentialsLoginResponseModel.class);
 

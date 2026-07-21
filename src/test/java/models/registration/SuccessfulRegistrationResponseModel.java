@@ -1,8 +1,6 @@
-package models.registration.records;
+package models.registration;
 
-import static java.lang.String.format;
-
-public record RegistrationResponseRecordsModel(
+public record SuccessfulRegistrationResponseModel(
         Integer id,
         String username,
         String firstName,
